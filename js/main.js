@@ -4,7 +4,7 @@ $(document).ready(function() {
 	var $playButton = $("#play-pause");
 	var $muteButton = $("#mute");
 	var $fullScreenButton = $("#full-screen");
-	var $seekBar = $("#seek-bar");
+	var $seekBar = $("input[type='range']");
 	var $buttonControls = $('.button-controls')
 	var $videoControls = $('.video-controls');
 	var $videoPlayerContainer = $('.video-player-container');
@@ -18,7 +18,11 @@ $(document).ready(function() {
 		$('#currentTime').html(formatTime(currentPlayTime));
 		$('#totalTime').html(formatTime(totalPlayTime));
 
-	},500)
+		$seekBar.css('background','linear-gradient(to right, #ffa500 0%, #ffa500 ' + $seekBar.get(0).value + '%, #666 ' + $seekBar.get(0).value + '%, #666 100%)');
+		$seekBar.css('background','-webkit-gradient(linear, to right, #ffa500 0%, #ffa500 ' + $seekBar.get(0).value + '%, #666 ' + $seekBar.get(0).value + '%, #666 100%)');
+		$seekBar.css('background','-moz-linear-gradient(to right, #ffa500 0%, #ffa500 ' + $seekBar.get(0).value + '%, #666 ' + $seekBar.get(0).value + '%, #666 100%)');
+		
+	},1)
 
 	  function formatTime(seconds) {
     	var minutes = Math.floor(seconds / 60);
@@ -78,10 +82,9 @@ $(document).ready(function() {
 
 	});
 
-	$seekBar.on("change click", function() {
+	$seekBar.on("input click", function() {
 
-		var time = $video.get(0).duration * ($seekBar.get(0).value / 100);
-
+		var time = ($(this).get(0).value / 100) * $video.get(0).duration;
 		$video.get(0).currentTime = time;
 
 	});
@@ -94,7 +97,6 @@ $(document).ready(function() {
 
 		var time = $video.get(0).currentTime;
 
-		console.log(time);
 
 		if (time < 4.13) {
 			$container.children().css('color','gray');
