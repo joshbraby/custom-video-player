@@ -8,7 +8,8 @@ $(document).ready(function() {
 	var $buttonControls = $('.button-controls')
 	var $videoControls = $('.video-controls');
 	var $videoPlayerContainer = $('.video-player-container');
-	
+	var $container = $('.container');
+
 	setInterval(function(){
 
 		var currentPlayTime = $video.get(0).currentTime;
@@ -20,9 +21,9 @@ $(document).ready(function() {
 	},500)
 
 	  function formatTime(seconds) {
-    	minutes = Math.floor(seconds / 60);
+    	var minutes = Math.floor(seconds / 60);
 	    minutes = (minutes >= 10) ? minutes : "0" + minutes;
-	    seconds = Math.floor(seconds % 60);
+	    var seconds = Math.floor(seconds % 60);
 	    seconds = (seconds >= 10) ? seconds : "0" + seconds;
 	    return minutes + ":" + seconds;
 	  }
@@ -87,16 +88,65 @@ $(document).ready(function() {
 
 	$video.on("timeupdate", function() {
 
-	  var value = (100 / $video.get(0).duration) * $video.get(0).currentTime;
+		var value = (100 / $video.get(0).duration) * $video.get(0).currentTime;
 
-	  $seekBar.get(0).value = value;
+		$seekBar.get(0).value = value;
 
-	  console.log(value);
+		var time = $video.get(0).currentTime;
 
-	  if (value === 100) {
-	  	$playButton.find('img').attr('src','icons/play-icon.png')
+		console.log(time);
 
-	  }
+		if (time < 4.13) {
+			$container.children().css('color','gray');
+			$container.children(":first").css('color','#ffa500');
+		} else if (time < 7.535) {
+			$container.children().css('color','gray');
+			$container.children().eq(1).css('color','#ffa500');
+		} else if (time < 11.270) {
+			$container.children().css('color','gray');
+			$container.children().eq(2).css('color','#ffa500');
+		} else if (time < 13.960) {
+			$container.children().css('color','gray');
+			$container.children().eq(3).css('color','#ffa500');
+		} else if (time < 17.940) {
+			$container.children().css('color','gray');
+			$container.children().eq(4).css('color','#ffa500');
+		} else if (time < 22.370) {
+			$container.children().css('color','gray');
+			$container.children().eq(5).css('color','#ffa500');
+		} else if (time < 26.880) {
+			$container.children().css('color','gray');
+			$container.children().eq(6).css('color','#ffa500');
+		} else if (time < 30.920) {
+			$container.children().css('color','gray');
+			$container.children().eq(7).css('color','#ffa500');
+		} else if (time < 34.730) {
+			$container.children().css('color','gray');
+			$container.children().eq(8).css('color','#ffa500');
+		} else if (time < 39.430) {
+			$container.children().css('color','gray');
+			$container.children().eq(9).css('color','#ffa500');
+		} else if (time < 41.190) {
+			$container.children().css('color','gray');
+			$container.children().eq(10).css('color','#ffa500');
+		} else if (time < 46.300) {
+			$container.children().css('color','gray');
+			$container.children().eq(11).css('color','#ffa500');
+		} else if (time < 49.270) {
+			$container.children().css('color','gray');
+			$container.children().eq(12).css('color','#ffa500');
+		} else if (time < 53.760) {
+			$container.children().css('color','gray');
+			$container.children().eq(13).css('color','#ffa500');
+		} else if (time < 57.780) {
+			$container.children().css('color','gray');
+			$container.children().eq(14).css('color','#ffa500');
+		} else if (time < 59) {
+			$container.children().css('color','gray');
+			$container.children().eq(15).css('color','#ffa500');
+		} else if (time > 59.5) {
+		    $playButton.find('img').attr('src','icons/play-icon.png');
+		}
 
 	});
 
